@@ -59,10 +59,9 @@
             </execution>
           </executions>
           <configuration>
-            <mainClass>edu.eci.cvds.patterns.archetype.App</mainClass>
+            <mainClass>edu.eci.cvds.patterns.shapes.ShapeMain</mainClass>
             <arguments>
               <argument>param1</argument>
-              <argument>param2</argument>
             </arguments>
           </configuration>
         </plugin>
