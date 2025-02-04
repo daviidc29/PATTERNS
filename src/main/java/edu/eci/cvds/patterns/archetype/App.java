@@ -1,7 +1,5 @@
 package edu.eci.cvds.patterns.archetype;
 
-import java.util.Arrays;
-
 /**
  * Hello world!
  */
