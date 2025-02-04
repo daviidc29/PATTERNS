@@ -130,10 +130,140 @@ Además del parámetro `package`, hay otros parámetros que se pueden enviar al 
 
 ![alt text](Resources/imagen-4.png)
 
+**Ejecutar la clase desde línea de comandos enviando su nombre como parámetro y verificar la salida. Ej: Hello Pepito!**
+
+
+![alt text](Resources/imagen-5.png)
+
+
+**Ejecutar la clase con su nombre y apellido como parámetro. ¿Qué sucedió?**
+
+![alt text](Resources/imagen-6.png)
+
+**Verifique cómo enviar los parámetros de forma "compuesta" para que el saludo se realice con nombre y apellido.**
+
+En este caso se debe agregar el siguiente bloque en la seccion pluggins del pom.XML:
+
+![alt text](Resources/imagen-7.png)
+
+Donde : 
+
+**mainClass:** Define la clase principal que tiene el método main().
+
+**arguments:** Lista de argumentos pasados a main().
+
+
+Cada **argument** es un elemento separado.
+
+Maven los pasará como argumentos del programa.
+
+**comando :**`mvn exec:java -Dexec.args="Valor1 Valor2"`
+
+**Ejecutar nuevamente y verificar la salida en consola. Ej: Hello Pepito Perez!**
+
+
+![alt text](Resources/imagen-8.png)
+
+## HACER EL ESQUELETO DE LA APLICACIÓN
+Cree el paquete `edu.eci.cvds.patterns.shapes` y el paquete `edu.eci.cvds.patterns.shapes.concrete`.
+
+Cree una interfaz llamada `Shape.java` en el directorio `src/main/java/edu/eci/cvds/patterns/shapes` de la siguiente manera:
+```java
+package edu.eci.cvds.patterns.shapes;
+
+public interface Shape {
+    public int getNumberOfEdges();
+}
+```
+
+**Interfaz:**
+
+![alt text](Resources/imagen-9.png)
+
+
+Cree una enumeración llamada `RegularShapeType.java` en el directorio `src/main/java/edu/eci/cvds/patterns/shapes` así:
+
+```java
+package edu.eci.cvds.patterns.shapes;
+
+public enum RegularShapeType {
+    Triangle, Quadrilateral, Pentagon, Hexagon
+}
+```
+
+**Enumeración**
+
+![alt text](Resources/imagen-10.png)
+
+En el directorio `src/main/java/edu/eci/cvds/patterns/shapes/concrete` cree las diferentes clases (Triangle, Quadrilateral, Pentagon, Hexagon), que implementen la interfaz creada y retornen el número correspondiente de vértices que tiene la figura. 
+
+Siguiendo el ejemplo del triángulo:
+```java
+package edu.eci.cvds.patterns.shapes.concrete;
+
+import edu.eci.cvds.patterns.shapes.Shape;
+
+public class Triangle implements Shape {
+    public int getNumberOfEdges() {
+        return 3;
+    }
+}
+```
+
+**Clases:**
+
+
+![alt text](Resources/imagen-11.png)
+
+
+
+![alt text](Resources/imagen-12.png)
+
+
+
+![alt text](Resources/imagen-13.png)
+
+
+![alt text](Resources/imagen-14.png)
+
+Cree el archivo `ShapeMain.java` en el directorio `src/main/java/edu/eci/cvds/patterns/shapes` con el metodo main:
+```java
+package edu.eci.cvds.patterns.shapes;
+
+public class ShapeMain {
+
+  public static void main(String[] args) {
+    if (args == null || args.length != 1) {
+      System.err.println("Parameter of type RegularShapeType is required.");
+      return;
+    }
+    try {
+      RegularShapeType type = RegularShapeType.valueOf(args[0]);
+      Shape shape = ShapeFactory.create(type);
+      System.out.println(
+        String.format(
+          "Successfully created a %s with %s sides.",
+          type,
+          shape.getNumberOfEdges()
+        )
+      );
+    } catch (IllegalArgumentException ex) {
+      System.err.println(
+        "Parameter '" + args[0] + "' is not a valid RegularShapeType"
+      );
+      return;
+    }
+  }
+}
+```
+
+**Shape.main**
+
+![alt text](Resources/imagen-15.png)
 
 
 
 
+Analice y asegúrese de entender cada una de las instrucciones que se encuentran en todas las clases que se crearon anteriormente. Cree el archivo `ShapeFactory.java` en el directorio `src/main/java/edu/eci/cvds/patterns/shapes` implementando el patrón fábrica (Hint: https://refactoring.guru/design-patterns/catalog), haciendo uso de la instrucción switch-case de Java y usando las enumeraciones.
 
-
-
+¿Cuál fábrica hiciste? y ¿Cuál es mejor?
