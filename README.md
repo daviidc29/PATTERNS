@@ -266,4 +266,61 @@ public class ShapeMain {
 
 Analice y asegúrese de entender cada una de las instrucciones que se encuentran en todas las clases que se crearon anteriormente. Cree el archivo `ShapeFactory.java` en el directorio `src/main/java/edu/eci/cvds/patterns/shapes` implementando el patrón fábrica (Hint: https://refactoring.guru/design-patterns/catalog), haciendo uso de la instrucción switch-case de Java y usando las enumeraciones.
 
-¿Cuál fábrica hiciste? y ¿Cuál es mejor?
+**¿Cuál fábrica hiciste? y ¿Cuál es mejor?**
+
+En este caso llegamos al consenso de que el patrón Simple Factory es ideal para casos en los que se quiere centralizar la creación de objetos y no es necesaria una estructura compleja con múltiples niveles de herencia o diferentes familias de objetos, como sucede en Factory Method o Abstract Factory.
+
+
+Para este laboratorio necesitamos crear instancias de clases concretas (Triangle, Quadrilateral, Pentagon, Hexagon) basadas en un único parámetro (RegularShapeType).
+
+La lógica de creación es sencilla y clara: dependiendo del tipo, devolvemos una instancia específica.
+No hay múltiples familias de productos ni jerarquías complicadas, por lo que el uso de una fábrica más compleja (como Abstract Factory) no es necesario.
+
+**Comparación:**
+
+**Simple Factory:** Centraliza la creación de objetos y es fácil de mantener. Perfecto para este caso.
+
+
+**Factory Method:** Proporciona una mayor flexibilidad, pero añade complejidad innecesaria si solo se necesita crear unas pocas clases concretas.
+
+
+**Abstract Factory:** Útil cuando se tienen por ejemplo múltiples familias de objetos relacionadas. No aplica aquí porque solo manejamos una familia de figuras geométricas
+
+
+**Clase ShapeFactory**
+
+![alt text](Resources/imagen-16.png)
+
+Ejecute múltiples veces la clase ShapeMain, usando el plugin exec de maven con los siguientes parámetros y verifique la salida en consola para cada una:
+- Sin parámetros
+- Parámetro: qwerty
+- Parámetro: pentagon
+- Parámetro: Hexagon
+
+¿Cuál(es) de las anteriores instrucciones se ejecutan y funcionan correctamente y por qué?
+
+**Primero se modifico el pom.XML para la correcta ejecución**
+- Se cambio la clase main de App a ShapeMain
+- Se dejo solo un parametro para la ejecución 
+
+
+
+![alt text](Resources/imagen-17.png)
+
+- Sin parámetros
+
+![alt text](Resources/imagen-18.png)
+
+- Parámetro: qwerty
+
+
+![alt text](Resources/imagen-19.png)
+
+- Parámetro: pentagon
+
+![alt text](Resources/imagen-20.png)
+
+- Parámetro: Hexagon
+
+![alt text](Resources/imagen-21.png)
+
